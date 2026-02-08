@@ -1,14 +1,21 @@
 package main
 
+// @title Initial Project API
+// @version 1.0
+// @description REST API with Go, MongoDB, and Swagger
+// @contact.email fahim@example.com
+
 import (
 	"log"
 	"os"
 
-	"initial_project/internal/config"
-	"initial_project/internal/database"
-	"initial_project/internal/server"
+	"initial_project/config"
+	"initial_project/database"
+	"initial_project/server"
 
 	"github.com/joho/godotenv"
+
+	_ "initial_project/docs" 
 )
 
 func main() {
@@ -33,6 +40,8 @@ func main() {
 	s := server.NewServer()
 
 	// Add routes
+
+
 	s.Routes()
 
 	// Start server

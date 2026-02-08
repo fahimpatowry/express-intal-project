@@ -1,0 +1,21 @@
+info:
+  contact:
+    email: fahim@example.com
+  description: REST API with Go, MongoDB, and Swagger
+  title: Initial Project API
+  version: "1.0"
+paths:
+  /health:
+    get:
+      description: API health status
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+      summary: Health check
+      tags:
+      - Health
+swagger: "2.0"
