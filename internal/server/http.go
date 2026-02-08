@@ -4,9 +4,16 @@ import (
 	"fmt"
 	"net/http"
 	"time"
+	"os"
+
+	httpSwagger "github.com/swaggo/http-swagger"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+
+	// health "initial_project/internal/handlers/healthCheck"
+	health "initial_project/internal/handlers"
+
 )
 
 type Server struct {
@@ -28,10 +35,15 @@ func NewServer() *Server {
 
 // Add routes here
 func (s *Server) Routes() {
-	s.Router.Get("/health", func(w http.ResponseWriter, r *http.Request) {
-		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("ok"))
-	})
+	s.Router.Get("/health", health.HealthCheck)
+
+	// Swagger route with dynamic URL
+	port := os.Getenv("PORT")
+	swaggerURL := fmt.Sprintf("http://localhost:%s/swagger/doc.json", port)
+
+	s.Router.Get("/swagger/*", httpSwagger.Handler(
+		httpSwagger.URL(swaggerURL), // <- dynamically sets swagger.json URL
+	))
 }
 
 func (s *Server) Start(port string) error {
