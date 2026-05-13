@@ -1,0 +1,5 @@
+PORT=4040
+
+MONGO_URI=mongodb+srv://fahim:sd1@e-commerce-dev.zy6yq8r.mongodb.net/?appName=e-commerce-dev
+MONGO_DB=e-commerce
+
